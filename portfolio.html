@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Muhammad R Omer – Portfolio</title>
+  <meta name="description" content="Muhammad R Omer – Biophysics + Data Science. Projects, experience, and skills across Python, R, and analytics." />
+  <meta property="og:title" content="Muhammad R Omer – Portfolio" />
+  <meta property="og:description" content="Biophysics + Data Science. Projects, experience, and skills across Python, R, and analytics." />
+  <meta property="og:type" content="website" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <!-- Plausible analytics (set data-domain when you pick a domain) -->
+  <script defer data-domain="rafeyomer.github.io" src="https://plausible.io/js/script.js"></script>
+  <!-- JSON-LD: Person + Projects -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Muhammad R Omer",
+    "url": "https://rafeyomer.github.io/portfolio/",
+    "sameAs": [
+      "https://github.com/rafeyomer",
+      "https://www.linkedin.com/in/momer4"
+    ],
+    "alumniOf": [
+      {"@type": "CollegeOrUniversity", "name": "Arizona State University"},
+      {"@type": "CollegeOrUniversity", "name": "Harper College"}
+    ],
+    "knowsAbout": [
+      "Python", "R", "Jupyter", "Data Visualization", "Statistical Analysis", "Machine Learning", "Pandas", "NumPy", "ggplot2", "tidyverse"
+    ],
+    "hasPart": [
+      {
+        "@type": "CreativeWork",
+        "name": "Insurance Cost Analysis",
+        "url": "https://github.com/rafeyomer/Insurance-cost-analysis",
+        "about": "Multiple linear regression on insurance charges; R²≈0.82"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Normal Distribution Interactive App",
+        "applicationCategory": "Statistics",
+        "url": "https://moer4.shinyapps.io/lab_3/"
+      }
+    ]
+  }
+  </script>
+  <style>
+    /* ===== Professional yet lively palette (supports light/dark) ===== */
+    :root {
+      --bg: #0b1220;
+      --bg-accent-a: rgba(56, 189, 248, .10);
+      --bg-accent-b: rgba(37, 99, 235, .10);
+      --surface: #0f172a;
+      --surface-2: #111827;
+      --border: #1f2a44;
+      --text: #e5e7eb;
+      --muted: #b7c1d6;
+      --accent: #2563eb;
+      --accent-2: #38bdf8;
+      --link: #60a5fa;
+      --shadow: rgba(2, 6, 23, .65);
+      --ok: #22c55e; --err: #ef4444;
+      --nav-height: 64px;
+      --focus: 0 0 0 3px rgba(37,99,235,.35);
+    }
+    html[data-theme="light"] {
+      --bg: #f8fafc;
+      --bg-accent-a: rgba(37, 99, 235, .06);
+      --bg-accent-b: rgba(56, 189, 248, .06);
+      --surface: #ffffff;
+      --surface-2: #f1f5f9;
+      --border: #d9e0ea;
+      --text: #0f172a;
+      --muted: #475569;
+      --accent: #1d4ed8;
+      --accent-2: #0891b2;
+      --link: #1d4ed8;
+      --shadow: rgba(2,6,23,.08);
+      --focus: 0 0 0 3px rgba(29,78,216,.25);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    html, body { height: 100%; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.65;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, var(--bg-accent-a), transparent 60%),
+        radial-gradient(1000px 600px at 110% 10%, var(--bg-accent-b), transparent 60%),
+        var(--bg);
+    }
+
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:focus-visible, button:focus-visible, input:focus-visible { outline: none; box-shadow: var(--focus); border-radius: 8px; }
+
+    .container { max-width: 1120px; margin: 0 auto; padding: 24px; }
+
+    /* ===== Top Navigation ===== */
+    .topnav { position: sticky; top: 0; z-index: 1100; backdrop-filter: blur(8px); background: linear-gradient(180deg, rgba(2,6,23,.75), rgba(2,6,23,.55)); border-bottom: 1px solid var(--border); }
+    .topnav-inner { max-width: 1120px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 12px 24px; height: var(--nav-height); }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px; color: var(--text); }
+    .brand i { color: var(--accent-2); }
+
+    .navlinks { display:flex; align-items:center; gap: 14px; flex-wrap: wrap; }
+    .navlinks a, .navlinks button { color: var(--text); border: 1px solid transparent; background: transparent; padding: 8px 10px; border-radius: 10px; font-weight: 600; cursor: pointer; }
+    .navlinks a:hover, .navlinks button:hover { border-color: var(--border); text-decoration: none; }
+    .navlinks .resume { display:inline-flex; align-items:center; gap:8px; border: 1px solid var(--border); }
+    .navlinks .theme, .hamburger { width:38px; height:38px; display:inline-flex; align-items:center; justify-content:center; border: 1px solid var(--border); border-radius: 10px; }
+
+    /* Mobile drawer */
+    .hamburger { display:none; }
+    .drawer { position: fixed; inset: 0 0 0 auto; width: 280px; background: var(--surface); border-left: 1px solid var(--border); box-shadow: -20px 0 50px var(--shadow); transform: translateX(110%); transition: transform .25s ease; z-index: 1200; display:flex; flex-direction:column; }
+    .drawer.open { transform: translateX(0); }
+    .drawer-header { display:flex; justify-content:space-between; align-items:center; padding:14px 16px; border-bottom:1px solid var(--border); }
+    .drawer-links { display:flex; flex-direction:column; padding:12px; gap:8px; }
+    .drawer-links a, .drawer-links button { text-align:left; padding:10px 12px; border-radius:10px; border:1px solid transparent; background:transparent; color: var(--text); font-weight:600; }
+    .drawer-links a:hover, .drawer-links button:hover { border-color: var(--border); text-decoration:none; }
+
+    /* ===== Header ===== */
+    header { text-align: center; padding: 72px 12px 40px; position: relative; overflow: hidden; }
+    header h1 { font-size: clamp(2.2rem, 6vw, 3.25rem); font-weight: 700; letter-spacing: 0.2px; color: var(--text); animation: fadeDown .8s ease-out both; }
+    header p { font-size: clamp(1rem, 2.4vw, 1.2rem); color: var(--muted); margin-top: 8px; animation: fadeDown .8s ease-out .05s both; }
+
+    .social-links { margin-top: 18px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .chip { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: linear-gradient(180deg, var(--surface-2), var(--surface)); border: 1px solid var(--border); border-radius: 999px; color: var(--text); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease; box-shadow: 0 10px 24px var(--shadow); will-change: transform; }
+    .chip:hover { transform: translateY(-2px); border-color: var(--accent); box-shadow: 0 18px 36px var(--shadow); }
+    .chip i { color: var(--accent-2); }
+
+    .cta { margin-top: 18px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .btn { border-radius: 12px; padding: 12px 14px; border: 1px solid var(--border); background: linear-gradient(180deg, var(--surface-2), var(--surface)); color: var(--text); font-weight: 700; letter-spacing: .2px; transition: transform .2s ease, box-shadow .25s ease, border-color .25s ease; cursor: pointer; }
+    .btn:hover { transform: translateY(-2px); border-color: var(--accent); box-shadow: 0 14px 28px var(--shadow); text-decoration: none; }
+    .btn.icon { width: 46px; height: 46px; display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; }
+
+    /* ===== Main card ===== */
+    .main-content { background: linear-gradient(180deg, rgba(17,24,39,.85), rgba(15,23,42,.85)); border: 1px solid var(--border); border-radius: 20px; padding: clamp(20px, 4vw, 40px); margin-top: 24px; box-shadow: 0 20px 60px var(--shadow); animation: fadeUp .7s ease-out both; backdrop-filter: blur(6px); }
+
+    section { scroll-margin-top: calc(var(--nav-height) + 24px); margin-bottom: clamp(36px, 6vw, 56px); }
+    h2 { color: var(--text); font-size: clamp(1.35rem, 3.5vw, 1.9rem); font-weight: 700; letter-spacing: .2px; margin-bottom: 18px; position: relative; display: inline-block; }
+    h2::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 52%; height: 3px; border-radius: 3px; background: linear-gradient(90deg, var(--accent), transparent); }
+
+    #about p { color: var(--muted); font-size: 1.05rem; }
+
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease; }
+    .card:hover { transform: translateY(-3px); border-color: var(--accent); box-shadow: 0 18px 34px var(--shadow); }
+
+    .group { display: grid; gap: 16px; }
+
+    .experience-item, .education-item { padding: 18px; }
+    .experience-header, .education-header { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+    .job-title { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+    .company { color: var(--muted); }
+    .date-location { color: #94a3b8; font-weight: 500; }
+    .experience-item ul { margin: 10px 0 0 18px; color: var(--muted); }
+    .experience-item li { margin-bottom: 8px; }
+
+    /* Projects */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px; }
+    .project-card { position: relative; overflow: hidden; }
+    .project-title { font-weight: 700; margin-bottom: 6px; color: var(--text); }
+    .project-description { color: var(--muted); margin-bottom: 10px; }
+    .project-highlights { margin: 10px 0 0 18px; color: #9fb3d1; }
+    .project-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top: 12px; }
+    .project-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 10px; background: var(--accent); color: white; border: 1px solid transparent; transition: transform .2s ease, box-shadow .25s ease; text-decoration: none; }
+    .project-link.secondary { background: transparent; color: var(--link); border: 1px solid var(--border); }
+    .project-link:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(37, 99, 235, .25); text-decoration: none; }
+
+    .embed-wrap { position: relative; width: 100%; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--surface-2); }
+    .embed-wrap::before { content: ""; display: block; padding-top: 62.5%; } /* ~16:10 ratio */
+    .embed-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .embed-skeleton { position:absolute; inset:0; display:grid; place-items:center; background:linear-gradient(180deg, var(--surface-2), var(--surface)); color:var(--muted); font-weight:600; }
+
+    /* Skills */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+    .skill-category h3 { color: var(--text); font-size: 1.05rem; margin-bottom: 10px; }
+    .skill-category ul { list-style: none; }
+    .skill-category li { padding: 8px 0; border-bottom: 1px dashed rgba(148, 163, 184, .25); color: var(--muted); }
+    .skill-category li:last-child { border-bottom: 0; }
+
+    /* Contact */
+    .contact-grid { display:grid; grid-template-columns: 1fr; gap: 12px; max-width: 760px; }
+    .contact-grid input, .contact-grid textarea { width:100%; padding:12px 14px; border:1px solid var(--border); border-radius:10px; background:#0c1428; color:var(--text); }
+    html[data-theme="light"] .contact-grid input, html[data-theme="light"] .contact-grid textarea { background:#ffffff; }
+    .contact-grid textarea { min-height: 120px; resize: vertical; }
+
+    /* Chatbot */
+    .chatbot-container { position: fixed; bottom: 24px; right: 24px; z-index: 1000; }
+    .chatbot-toggle { width: 56px; height: 56px; border-radius: 999px; border: 1px solid var(--border); background: radial-gradient(120px 120px at 30% 0%, var(--bg-accent-a), var(--bg-accent-b)), var(--surface); color: var(--text); font-size: 20px; cursor: pointer; box-shadow: 0 10px 24px var(--shadow); transition: transform .25s ease, box-shadow .25s ease; animation: pulse 2.2s ease-in-out infinite; }
+    .chatbot-toggle:hover { transform: translateY(-2px) scale(1.03); box-shadow: 0 18px 32px var(--shadow); }
+
+    .chatbot-window { display: none; position: absolute; bottom: 70px; right: 0; width: 360px; max-width: 90vw; height: 520px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; box-shadow: 0 24px 48px var(--shadow); overflow: hidden; backdrop-filter: blur(6px); transform-origin: 100% 100%; animation: scaleIn .3s ease-out both; }
+    .chatbot-window.active { display: flex; flex-direction: column; }
+
+    .chatbot-header { background: linear-gradient(90deg, var(--accent), rgba(37,99,235,.85)); color: var(--text); padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; font-weight: 700; }
+    .chatbot-close { background: none; border: 0; color: var(--text); font-size: 18px; cursor: pointer; }
+
+    .chatbot-messages { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; background: linear-gradient(180deg, rgba(2,6,23,.35), transparent 30%); }
+    .message { padding: 10px 12px; border-radius: 12px; max-width: 82%; box-shadow: 0 6px 16px var(--shadow); animation: messageSlide .22s ease-out both; }
+    .message.bot { background: #0e1a32; color: var(--muted); align-self: flex-start; border: 1px solid var(--border); }
+    .message.user { background: var(--accent); color: white; align-self: flex-end; }
+
+    .chatbot-input-area { display: flex; gap: 8px; padding: 12px; border-top: 1px solid var(--border); background: var(--surface-2); }
+    .chatbot-input { flex: 1; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px; background: #0c1428; color: var(--text); outline: none; }
+    .chatbot-input:focus { border-color: var(--accent); box-shadow: var(--focus); }
+    .chatbot-send { padding: 10px 14px; background: var(--accent); color: white; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; }
+
+    .quick-questions { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; margin-top: 8px; }
+    .quick-question-btn { padding: 6px 8px; background: #0c1428; border: 1px solid var(--border); border-radius: 999px; color: var(--muted); cursor: pointer; transition: border-color .2s ease, transform .15s ease; font-size: .88rem; }
+    .quick-question-btn:hover { border-color: var(--accent); transform: translateY(-1px); }
+
+    /* Case study modal */
+    .modal { position: fixed; inset: 0; display:none; place-items:center; background: rgba(0,0,0,.45); z-index: 1300; }
+    .modal.open { display:grid; }
+    .modal-card { width:min(760px,92vw); background: var(--surface); border:1px solid var(--border); border-radius:14px; box-shadow: 0 30px 60px var(--shadow); padding:18px 20px; }
+    .modal-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+    .modal-header h3 { color: var(--text); font-size: 1.2rem; }
+    .modal-close { border:1px solid var(--border); background:var(--surface-2); color:var(--text); border-radius:10px; padding:6px 10px; cursor:pointer; }
+    .modal-body p { color: var(--muted); margin: 8px 0; }
+
+    /* Responsive */
+    @media (max-width: 840px) {
+      .navlinks { display:none; }
+      .hamburger { display:inline-flex; }
+    }
+    @media (max-width: 768px) {
+      .experience-header, .education-header { flex-direction: column; align-items: flex-start; }
+      .date-location { margin-top: 6px; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+    /* Animations */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px);} to { opacity: 1; transform: translateY(0);} }
+    @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px);} to { opacity: 1; transform: translateY(0);} }
+    @keyframes pulse { 0%,100% { box-shadow: 0 10px 24px var(--shadow);} 50% { box-shadow: 0 16px 36px rgba(2,6,23,.85);} }
+    @keyframes scaleIn { from { opacity: 0; transform: scale(.96);} to { opacity: 1; transform: scale(1);} }
+    @keyframes messageSlide { from { opacity: 0; transform: translateY(8px);} to { opacity: 1; transform: translateY(0);} }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* Dev test output */
+    #test-badge { position: fixed; left: 12px; bottom: 12px; font-size: 12px; padding: 6px 8px; border-radius: 8px; background: #0c1428; border: 1px solid var(--border); color: var(--muted); box-shadow: 0 6px 16px var(--shadow); opacity: .85; }
+    #test-badge.ok { color: var(--ok); border-color: var(--ok); }
+    #test-badge.err { color: var(--err); border-color: var(--err); }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#about" style="position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
+
+  <!-- Sticky top navigation -->
+  <nav class="topnav" aria-label="Primary">
+    <div class="topnav-inner">
+      <a href="#top" class="brand"><i class="fas fa-dna" aria-hidden="true"></i><span>M R Omer</span></a>
+      <div class="navlinks" role="menubar">
+        <a href="#about" role="menuitem">About</a>
+        <a href="#experience" role="menuitem">Experience</a>
+        <a href="#projects" role="menuitem">Projects</a>
+        <a href="#skills" role="menuitem">Skills</a>
+        <a href="#impact" role="menuitem">Highlights</a>
+        <a class="resume" href="resume.pdf" download title="Download résumé" role="menuitem"><i class="fas fa-file-arrow-down"></i> Résumé</a>
+        <button id="themeToggleTop" class="theme" aria-label="Toggle theme" role="menuitem"><i class="fas fa-moon"></i></button>
+      </div>
+      <button id="hamburger" class="hamburger" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+    </div>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <aside id="drawer" class="drawer" aria-hidden="true" aria-label="Mobile menu">
+    <div class="drawer-header">
+      <strong>Menu</strong>
+      <button id="drawerClose" class="modal-close" aria-label="Close menu">Close</button>
+    </div>
+    <div class="drawer-links">
+      <a href="#about" class="drawer-link">About</a>
+      <a href="#experience" class="drawer-link">Experience</a>
+      <a href="#projects" class="drawer-link">Projects</a>
+      <a href="#skills" class="drawer-link">Skills</a>
+      <a href="#impact" class="drawer-link">Highlights</a>
+      <a href="resume.pdf" download class="drawer-link"><i class="fas fa-file-arrow-down" style="margin-right:8px"></i>Résumé</a>
+      <button id="themeToggleDrawer" class="drawer-link" style="text-align:left"><i class="fas fa-moon" style="margin-right:8px"></i>Toggle theme</button>
+    </div>
+  </aside>
+
+  <div class="container" id="top">
+    <header class="reveal">
+      <h1>Muhammad R Omer</h1>
+      <p>Biophysics × Data Science — analytics, modeling & decision intelligence</p>
+      <div class="social-links" aria-label="Social links">
+        <a class="chip" href="https://github.com/rafeyomer" target="_blank" rel="noopener"><i class="fab fa-github"></i><span>GitHub</span></a>
+        <a class="chip" href="https://www.linkedin.com/in/momer4" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i><span>LinkedIn</span></a>
+      </div>
+      <div class="cta" role="group" aria-label="Contact options">
+        <a class="btn icon" href="mailto:rafey.omer@hotmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+        <a class="btn icon" href="tel:8729857888" title="Call"><i class="fas fa-phone"></i></a>
+        <a class="btn icon" id="themeToggle" title="Toggle light/dark"><i class="fas fa-moon"></i></a>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <section id="about" class="reveal">
+        <h2>About Me</h2>
+        <p>Biophysics major with a Data Science minor, combining a strong quantitative foundation with practical experience in Python, R, and Jupyter notebooks for statistical data analysis and data visualization. Skilled in applying computational and analytical methods to uncover insights from complex systems and large datasets.</p>
+        <p>Completed a hands-on internship in lean manufacturing, where I improved process efficiency and optimized system performance in fast-paced, data-driven environments. Adept at transforming raw data into actionable insights for stakeholders through advanced statistical techniques, data wrangling, and AI-driven approaches.</p>
+        <p>Known for being dependable, detail-oriented, and highly organized, with a proactive mindset and strong problem-solving abilities. Passionate about leveraging data science, AI, and visualization to model and improve complex systems across diverse domains.</p>
+      </section>
+
+      <section id="experience" class="reveal">
+        <h2>Experience</h2>
+        <div class="group">
+          <article class="card experience-item">
+            <div class="experience-header">
+              <div>
+                <div class="job-title">Lean Manufacturing Intern</div>
+                <div class="company">SWD INC. — Addison, IL</div>
+              </div>
+              <div class="date-location">Feb 2024 – Nov 2024</div>
+            </div>
+            <ul>
+              <li>Collected and analyzed production data in Python to identify throughput bottlenecks and waste.</li>
+              <li>Ran statistical time studies; built concise visual reports to support workflow improvements.</li>
+              <li>Partnered with engineering/quality to validate changes and standardize updated procedures.</li>
+              <li>Summarized complex datasets into stakeholder-ready insights and dashboards.</li>
+            </ul>
+            <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap;">
+              <button class="btn" data-modal="modal-exp">Read case study</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="projects" class="reveal">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+          <article class="card project-card">
+            <div class="project-title">Insurance Cost Analysis</div>
+            <p class="project-description">Multiple linear regression on 1,338 policyholders to predict insurance charges from demographic and lifestyle variables.</p>
+            <ul class="project-highlights">
+              <li>Wrangling/EDA in R; visualizations (histograms, boxplots, scatterplots).</li>
+              <li>Model performance: R² ≈ 0.82; RMSE ≈ $5K (test).</li>
+              <li>Smoking surfaced as the strongest driver (~$22.6K annual increase).</li>
+            </ul>
+            <div class="project-actions">
+              <a class="project-link" href="https://github.com/rafeyomer/Insurance-cost-analysis" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+              <button class="project-link secondary" data-modal="modal-ins">Case study</button>
+            </div>
+          </article>
+
+          <article class="card project-card" id="shiny">
+            <div class="project-title">Normal Distribution Interactive App</div>
+            <p class="project-description">R Shiny app to explore Normal distributions with real-time probability calculations and shaded regions.</p>
+            <ul class="project-highlights">
+              <li>Built with Shiny + ggplot2/plotly; dynamic μ and σ controls.</li>
+              <li>Quick calculations: P(a &lt; X &lt; b), P(X ≤ a), P(X ≥ b).</li>
+              <li>Interactive histogram + density overlay.</li>
+            </ul>
+            <div class="embed-wrap" aria-label="Embedded Shiny app">
+              <div class="embed-skeleton" id="shiny-skeleton">Loading Shiny app…</div>
+              <iframe id="shiny-iframe" title="Normal Distribution App" data-src="https://moer4.shinyapps.io/lab_3/" loading="lazy" allowfullscreen></iframe>
+            </div>
+            <div class="project-actions">
+              <a class="project-link" href="https://github.com/rafeyomer/Normal-Distribution-App" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+              <button class="project-link secondary" data-modal="modal-shiny">Case study</button>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="skills" class="reveal">
+        <h2>Skills</h2>
+        <div class="skills-grid">
+          <article class="card skill-category">
+            <h3>Technical Skills</h3>
+            <ul>
+              <li>Python (NumPy, Pandas, Matplotlib, Seaborn)</li>
+              <li>R (tidyverse, dplyr, ggplot2)</li>
+              <li>Jupyter Notebooks</li>
+              <li>SQL (foundational)</li>
+              <li>Statistical Data Analysis</li>
+              <li>Machine Learning (introductory)</li>
+              <li>Data Cleaning & Wrangling</li>
+              <li>Data Visualization</li>
+              <li>Microsoft Excel</li>
+              <li>KPI Tracking & Workflow Optimization</li>
+            </ul>
+          </article>
+
+          <article class="card skill-category">
+            <h3>Soft Skills</h3>
+            <ul>
+              <li>Critical Thinking</li>
+              <li>Analytical Skills</li>
+              <li>Problem Solving</li>
+              <li>Communication & Stakeholder Alignment</li>
+              <li>Team Collaboration</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="impact" class="reveal">
+        <h2>Highlights</h2>
+        <div class="group">
+          <article class="card">
+            <ul>
+              <li>Dean’s List (ASU, Spring 2025); President’s List (Harper, Fall 2024).</li>
+              <li>Completed hands-on lean manufacturing internship focused on analytics, time studies, and process documentation.</li>
+              <li>Delivered statistical models and visual dashboards for decision support in coursework and projects.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact" class="reveal">
+        <h2>Contact</h2>
+        <form name="contact" method="POST" data-netlify="true" class="card contact-grid">
+          <input type="hidden" name="form-name" value="contact" />
+          <label>
+            <span style="display:block;color:var(--muted);font-weight:600;margin-bottom:6px;">Your name</span>
+            <input aria-label="Your name" type="text" name="name" required />
+          </label>
+          <label>
+            <span style="display:block;color:var(--muted);font-weight:600;margin-bottom:6px;">Email</span>
+            <input aria-label="Email" type="email" name="email" required />
+          </label>
+          <label>
+            <span style="display:block;color:var(--muted);font-weight:600;margin-bottom:6px;">Message</span>
+            <textarea aria-label="Message" name="message" required></textarea>
+          </label>
+          <div>
+            <button class="btn" type="submit"><i class="fas fa-paper-plane" style="margin-right:8px"></i>Send</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <!-- Chatbot -->
+  <div class="chatbot-container" aria-live="polite">
+    <button class="chatbot-toggle" id="chatbotToggle" aria-label="Open profile assistant">
+      <i class="fas fa-comments"></i>
+    </button>
+    <div class="chatbot-window" id="chatbotWindow" aria-label="Profile assistant">
+      <div class="chatbot-header">
+        <span>Ask About Muhammad</span>
+        <button class="chatbot-close" id="chatbotClose" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+      <div class="chatbot-messages" id="chatbotMessages">
+        <div class="message bot">
+          Hi! Ask about experience, education, skills, or projects. Try the quick buttons below.
+        </div>
+        <div class="quick-questions">
+          <button class="quick-question-btn" data-question="summary">Give me a summary</button>
+          <button class="quick-question-btn" data-question="experience">Tell me about his experience</button>
+          <button class="quick-question-btn" data-question="education">What's his education?</button>
+          <button class="quick-question-btn" data-question="skills">What are his technical skills?</button>
+          <button class="quick-question-btn" data-question="projects">Tell me about his projects</button>
+          <button class="quick-question-btn" data-question="contact">How do I contact him?</button>
+          <button class="quick-question-btn" data-question="demo">Show the Shiny app</button>
+        </div>
+      </div>
+      <div class="chatbot-input-area">
+        <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Ask me anything…" />
+        <button class="chatbot-send" id="chatbotSend" aria-label="Send"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modals: Case Studies -->
+  <section id="modal-ins" class="modal" aria-hidden="true" role="dialog" aria-label="Insurance cost analysis case study">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Insurance Cost Analysis — Case Study</h3>
+        <button class="modal-close" data-close="modal-ins">Close</button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Goal:</strong> Predict annual charges using demographic/lifestyle variables.</p>
+        <p><strong>Approach:</strong> Data cleaning (missing checks, outlier review), EDA (distributions, pairwise plots), multiple linear regression with interaction terms (e.g., smoker×age), k-fold CV.</p>
+        <p><strong>Results:</strong> R² ≈ 0.82, RMSE ≈ $5k; smoking emerged as strongest driver (~$22.6k).</p>
+        <p><strong>Next:</strong> Try regularization (Lasso/Ridge), assess non-linearities (splines), and fairness checks.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="modal-shiny" class="modal" aria-hidden="true" role="dialog" aria-label="Normal distribution app case study">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Normal Distribution Interactive App — Case Study</h3>
+        <button class="modal-close" data-close="modal-shiny">Close</button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Goal:</strong> Make Normal distribution parameters and probabilities intuitive.</p>
+        <p><strong>Approach:</strong> R Shiny UI with sliders for μ, σ, interval bounds; reactive plots via ggplot2/plotly; shaded probability regions; live computed P(a&lt;X&lt;b), P(X≤a), P(X≥b).</p>
+        <p><strong>Results:</strong> Interactive demo used for coursework and quick probability sanity checks.</p>
+        <p><strong>Next:</strong> Add t & χ² distributions, export images, and a “share state” URL.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="modal-exp" class="modal" aria-hidden="true" role="dialog" aria-label="Experience case study">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Lean Manufacturing Internship — Case Study</h3>
+        <button class="modal-close" data-close="modal-exp">Close</button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Goal:</strong> Improve throughput and standardize processes across lines.</p>
+        <p><strong>Approach:</strong> Time studies, Python-based analysis (Pandas/NumPy), KPI dashboards; collaborated with engineering/quality for validation and SOP updates.</p>
+        <p><strong>Results:</strong> Identified bottlenecks and compliance risks; shipped visual reports for stakeholders.</p>
+        <p><strong>Next:</strong> Automate KPI pipelines and add anomaly alerts.</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="test-badge" title="Developer tests"></div>
+
+  <script>
+    // Profile data (source of truth for the chatbot)
+    const profileData = {
+      name: "Muhammad R Omer",
+      education: [
+        { degree: "Bachelor of Science in Biophysics (Minor in Data Science)", school: "Arizona State University", date: "Expected May 2026", honors: "Dean's List; Spring 2025" },
+        { degree: "Associate of Science in Engineering Science", school: "Harper College", date: "Dec 2024", honors: "President's List; Fall 2024" }
+      ],
+      experience: [
+        { title: "Lean Manufacturing Intern", company: "SWD INC.", date: "Feb 2024 – Nov 2024", bullets: [
+          "Analyzed production data in Python to find bottlenecks",
+          "Time studies & visual reports for workflow improvements",
+          "Aligned changes with engineering & quality teams",
+          "Delivered concise, stakeholder-ready insights"
+        ]}
+      ],
+      skills: {
+        technical: [
+          "Python (NumPy, Pandas, Matplotlib, Seaborn)",
+          "R (tidyverse, dplyr, ggplot2)",
+          "Jupyter Notebooks",
+          "SQL (foundational)",
+          "Statistical Data Analysis",
+          "Machine Learning (introductory)",
+          "Data Cleaning & Wrangling",
+          "Data Visualization",
+          "Microsoft Excel",
+          "KPI Tracking & Workflow Optimization"
+        ],
+        soft: ["Critical Thinking","Analytical Skills","Problem Solving","Communication","Team collaboration"]
+      },
+      projects: [
+        { name: "Insurance Cost Analysis", description: "Multiple linear regression; R² ≈ 0.82; RMSE ≈ $5K; smoking strongest driver (~$22.6K).", links: [{label:"GitHub", href:"https://github.com/rafeyomer/Insurance-cost-analysis"}] },
+        { name: "Normal Distribution Interactive App", description: "R Shiny with real-time probabilities; dynamic μ & σ; histogram + density.", links: [ {label:"GitHub", href:"https://github.com/rafeyomer/Normal-Distribution-App"} ] }
+      ],
+      contact: { email: "rafey.omer@hotmail.com", phone: "(872) 985-7888", linkedin: "https://www.linkedin.com/in/momer4", github: "https://github.com/rafeyomer" }
+    };
+
+    // Theme toggles (top, header, drawer)
+    const themeToggle = document.getElementById('themeToggle');
+    const themeToggleTop = document.getElementById('themeToggleTop');
+    const themeToggleDrawer = document.getElementById('themeToggleDrawer');
+
+    function setTheme(next){
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      const icon = next === 'light' ? 'fa-sun' : 'fa-moon';
+      [themeToggle, themeToggleTop, themeToggleDrawer].forEach(el => { if (el) el.innerHTML = `<i class="fas ${icon}"></i>`; });
+    }
+    function toggleTheme(){
+      const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+      setTheme(isDark ? 'light' : 'dark');
+    }
+    [themeToggle, themeToggleTop, themeToggleDrawer].forEach(el => el && el.addEventListener('click', toggleTheme));
+
+    (function initTheme(){ const t = localStorage.getItem('theme') || 'dark'; setTheme(t); })();
+
+    // Mobile drawer
+    const hamburger = document.getElementById('hamburger');
+    const drawer = document.getElementById('drawer');
+    const drawerClose = document.getElementById('drawerClose');
+    const closeDrawer = () => { drawer.classList.remove('open'); drawer.setAttribute('aria-hidden','true'); };
+    const openDrawer = () => { drawer.classList.add('open'); drawer.setAttribute('aria-hidden','false'); };
+    hamburger?.addEventListener('click', openDrawer);
+    drawerClose?.addEventListener('click', closeDrawer);
+    drawer.addEventListener('click', (e)=>{ if(e.target===drawer) closeDrawer(); });
+    document.querySelectorAll('.drawer-link').forEach(a => a.addEventListener('click', closeDrawer));
+
+    // Chatbot wiring
+    const chatbotToggle = document.getElementById('chatbotToggle');
+    const chatbotWindow = document.getElementById('chatbotWindow');
+    const chatbotClose  = document.getElementById('chatbotClose');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    const chatbotInput = document.getElementById('chatbotInput');
+    const chatbotSend = document.getElementById('chatbotSend');
+
+    chatbotToggle.addEventListener('click', () => chatbotWindow.classList.add('active'));
+    chatbotClose.addEventListener('click',  () => chatbotWindow.classList.remove('active'));
+
+    function addMessage(text, isUser = false, isHTML = false) {
+      const div = document.createElement('div');
+      div.className = `message ${isUser ? 'user' : 'bot'}`;
+      if (isUser || !isHTML) div.textContent = text; else div.innerHTML = text;
+      chatbotMessages.appendChild(div);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function formatList(items) { return items.map(i => `• ${i}`).join('
+'); }
+
+    function generateResponse(question) {
+      const q = question.toLowerCase();
+      if (q.includes('summary') || q.includes('overview') || q.includes('about')) {
+        return `Muhammad is a Biophysics student (ASU) with a Data Science minor, graduating May 2026. He applies Python/R, statistics, and visualization to solve practical problems. Experience: Lean Manufacturing Intern at SWD (data analysis, time studies, stakeholder reporting). Projects include an insurance-cost regression model (R² ≈ 0.82) and an interactive Normal distribution app.`;
+      }
+      if (q.includes('experience') || q.includes('work') || q.includes('job')) {
+        const e = profileData.experience[0];
+        return `${e.title} at ${e.company} (${e.date}).
+${formatList(e.bullets)}`;
+      }
+      if (q.includes('education') || q.includes('school') || q.includes('degree') || q.includes('university')) {
+        return profileData.education.map(ed => `${ed.degree} — ${ed.school} (${ed.date})${ed.honors ? `
+${ed.honors}` : ''}`).join('
+
+');
+      }
+      if (q.includes('skill') || q.includes('technical') || q.includes('technology')) {
+        return `Technical:
+${formatList(profileData.skills.technical)}
+
+Soft:
+${formatList(profileData.skills.soft)}`;
+      }
+      if (q.includes('project')) {
+        return profileData.projects.map(p => `${p.name}: ${p.description}`).join('
+
+');
+      }
+      if (q.includes('demo') || q.includes('shiny')) {
+        const el = document.getElementById('shiny');
+        el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return `Scrolling to the embedded Shiny app…`;
+      }
+      if (q.includes('contact') || q.includes('email') || q.includes('phone') || q.includes('reach')) {
+        const c = profileData.contact;
+        return `<strong>Contact</strong><br>📧 <a href="mailto:${c.email}">${c.email}</a><br>📞 <a href="tel:${c.phone.replace(/[^\d]/g,'')}">${c.phone}</a><br>🔗 <a href="${c.linkedin}" target="_blank" rel="noopener">LinkedIn</a> · <a href="${c.github}" target="_blank" rel="noopener">GitHub</a>`;
+      }
+      return `I can help with experience, education, skills, projects, the live embedded demo, or contact details. What would you like to know?`;
+    }
+
+    function handleSend() {
+      const text = chatbotInput.value.trim();
+      if (!text) return;
+      addMessage(text, true);
+      const reply = generateResponse(text);
+      const isHTML = reply.startsWith('<strong>');
+      setTimeout(() => addMessage(reply, false, isHTML), 160);
+      chatbotInput.value = '';
+    }
+
+    chatbotSend.addEventListener('click', handleSend);
+    chatbotInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleSend(); });
+
+    document.querySelectorAll('.quick-question-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const q = btn.dataset.question;
+        addMessage(btn.textContent, true);
+        const reply = generateResponse(q);
+        const isHTML = reply.startsWith('<strong>');
+        setTimeout(() => addMessage(reply, false, isHTML), 140);
+      });
+    });
+
+    // Scroll-reveal
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } }
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Lazy-load Shiny iframe when visible
+    const shinyFrame = document.getElementById('shiny-iframe');
+    const shinySkeleton = document.getElementById('shiny-skeleton');
+    const shinyObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && shinyFrame.dataset.src) {
+          shinyFrame.src = shinyFrame.dataset.src;
+          shinyFrame.addEventListener('load', ()=> shinySkeleton.style.display='none', { once:true });
+          shinyObserver.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '200px 0px' });
+    if (shinyFrame) shinyObserver.observe(shinyFrame);
+
+    // Case study modals
+    function openModal(id){ const m = document.getElementById(id); if(!m) return; m.classList.add('open'); m.setAttribute('aria-hidden','false'); }
+    function closeModal(id){ const m = document.getElementById(id); if(!m) return; m.classList.remove('open'); m.setAttribute('aria-hidden','true'); }
+    document.querySelectorAll('[data-modal]').forEach(btn => btn.addEventListener('click', ()=> openModal(btn.dataset.modal)));
+    document.querySelectorAll('.modal').forEach(m => m.addEventListener('click', (e)=>{ if(e.target===m) closeModal(m.id); }));
+    document.querySelectorAll('.modal-close').forEach(btn => btn.addEventListener('click', ()=> closeModal(btn.dataset.close)));
+
+    // ------------------- Developer Self-Tests -------------------
+    (function runSelfTests(){
+      const badge = document.getElementById('test-badge');
+      const results = [];
+      const pass = (n)=>results.push({n,ok:true});
+      const fail = (n,m)=>results.push({n,ok:false,m});
+
+      try { const html = document.documentElement.innerHTML; (html.includes('$1')||html.includes('$2'))?fail('No placeholder tokens','Found "$1" or "$2"'):pass('No placeholder tokens'); } catch(e){ fail('Placeholder check crashed', e.message); }
+      try { const about = document.querySelector('#about'); about && about.querySelectorAll('p').length>0 ? pass('About section + paragraphs') : fail('About has paragraphs','Missing <p>'); } catch(e){ fail('About check crashed', e.message); }
+      try { const tech = Array.isArray(profileData.skills?.technical)?profileData.skills.technical:[]; tech.length>0?pass('Technical skills array'):fail('Technical skills populated','Empty'); } catch(e){ fail('Skills check crashed', e.message); }
+      try { const btns = document.querySelectorAll('.quick-question-btn'); btns.length>=6?pass('Quick question buttons present'):fail('Quick question buttons','Need ≥6'); } catch(e){ fail('Buttons check crashed', e.message); }
+      try { // Light theme contrast check for h1
+        const prev = document.documentElement.getAttribute('data-theme');
+        document.documentElement.setAttribute('data-theme','light');
+        const color = getComputedStyle(document.querySelector('header h1')).color;
+        if (color === 'rgb(255, 255, 255)') fail('Light theme text color','h1 remained white in light theme'); else pass('Light theme text color');
+        document.documentElement.setAttribute('data-theme', prev||'dark');
+      } catch(e){ fail('Theme contrast test crashed', e.message); }
+
+      const allOk = results.every(r=>r.ok);
+      badge.textContent = allOk ? 'Dev tests: all passed' : 'Dev tests: some failed (open console)';
+      badge.classList.add(allOk ? 'ok' : 'err');
+      console.group('%cPortfolio Self-Tests','color:#60a5fa;font-weight:700');
+      results.forEach(r => r.ok ? console.log('%c✔ '+r.n,'color:#22c55e') : console.warn('%c✖ '+r.n+(r.m?(' — '+r.m):''),'color:#ef4444'));
+      console.groupEnd();
+    })();
+  </script>
+</body>
+</html>
