@@ -605,8 +605,7 @@
       chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
 
-    function formatList(items) { return items.map(i => `• ${i}`).join('
-'); }
+    function formatList(items) { return items.map(i => `• ${i}`).join('\n'); }
 
     function generateResponse(question) {
       const q = question.toLowerCase();
@@ -615,26 +614,16 @@
       }
       if (q.includes('experience') || q.includes('work') || q.includes('job')) {
         const e = profileData.experience[0];
-        return `${e.title} at ${e.company} (${e.date}).
-${formatList(e.bullets)}`;
+        return `${e.title} at ${e.company} (${e.date}).\n${formatList(e.bullets)}`;
       }
       if (q.includes('education') || q.includes('school') || q.includes('degree') || q.includes('university')) {
-        return profileData.education.map(ed => `${ed.degree} — ${ed.school} (${ed.date})${ed.honors ? `
-${ed.honors}` : ''}`).join('
-
-');
+        return profileData.education.map(ed => `${ed.degree} — ${ed.school} (${ed.date})${ed.honors ? `\n${ed.honors}` : ''}`).join('\n\n');
       }
       if (q.includes('skill') || q.includes('technical') || q.includes('technology')) {
-        return `Technical:
-${formatList(profileData.skills.technical)}
-
-Soft:
-${formatList(profileData.skills.soft)}`;
+        return `Technical:\n${formatList(profileData.skills.technical)}\n\nSoft:\n${formatList(profileData.skills.soft)}`;
       }
       if (q.includes('project')) {
-        return profileData.projects.map(p => `${p.name}: ${p.description}`).join('
-
-');
+        return profileData.projects.map(p => `${p.name}: ${p.description}`).join('\n\n');
       }
       if (q.includes('demo') || q.includes('shiny')) {
         const el = document.getElementById('shiny');
@@ -727,3 +716,4 @@ ${formatList(profileData.skills.soft)}`;
   </script>
 </body>
 </html>
+
